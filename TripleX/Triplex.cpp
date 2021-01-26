@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <ctime> 
 
 void PlayerIntroduction(int Difficulty) //void defines a function that will return no data type
 {
@@ -11,9 +12,9 @@ bool PlayGame (int Difficulty)
 {
     PlayerIntroduction(Difficulty);
     //declaring our 3 number code
-    const int CodeA = rand();
-    const int CodeB = rand();
-    const int CodeC = rand();
+    const int CodeA = rand() % Difficulty + Difficulty;
+    const int CodeB = rand() % Difficulty + Difficulty;
+    const int CodeC = rand() % Difficulty + Difficulty;
 
     /*
     this is
@@ -69,13 +70,14 @@ bool PlayGame (int Difficulty)
 	#	 _____.,-#%&$@%#&#~,._____    #
 	#######################################
         )" << std::endl;
-        std::cout << "You failed! go back a level";
+        std::cout << "You failed! Try again";
         return false;
     }
 }
 
-int main()
+int main() 
 {
+    srand(time(NULL));
     int LevelDifficulty = 1;
     const int MaxDifficulty = 10;
 
@@ -88,10 +90,7 @@ int main()
         if (bLevelComplete)
         {
             ++LevelDifficulty;
-        } else {
-            --LevelDifficulty;
         }
-        
     }
 
     std::cout << "\n ** Congrats on finishing your training! **";
